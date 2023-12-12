@@ -12,4 +12,4 @@ void terminal_check(char *user, char *pwd);
 
 void print_ascii_art(const char *filename);
 
-#endif // __MAIN__H__
+#endif
