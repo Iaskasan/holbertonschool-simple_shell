@@ -11,6 +11,7 @@ void terminal_check(char *user, char *pwd)
 
 int main(void)
 {
+	const char *filename = "Sohi_ASCII_Art.txt";
 	char *user = getenv("USER");
 	char *pwd = getenv("PWD");
 	char *input = NULL;
@@ -24,6 +25,11 @@ int main(void)
 			break;
 		else if (strcmp(input, "clear\n") == 0)
 			system("clear");
+		else if (strcmp(input, "sohi\n") == 0)
+		{
+			print_ascii_art(filename);
+			printf("\n");
+		}
 		else
 			printf("%s", input);
 		terminal_check(user, pwd);

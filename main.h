@@ -7,6 +7,9 @@
 #include <unistd.h>
 #include <sys/types.h>
 
+int main(void);
+void terminal_check(char *user, char *pwd);
 
+void print_ascii_art(const char *filename);
 
 #endif // __MAIN__H__
