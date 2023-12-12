@@ -11,7 +11,7 @@ void terminal_check(char *user, char *pwd)
 
 int main(void)
 {
-	const char *filename = "Sohi_ASCII_Art.txt";
+	const char *filename = "ascii-art.txt";
 	char *user = getenv("USER");
 	char *pwd = getenv("PWD");
 	char *input = NULL;
