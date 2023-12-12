@@ -1,5 +1,11 @@
 #include "main.h"
 
+/**
+ * terminal_check - checks if the terminal is interactive
+ * @user: the user
+ * @pwd: the current working directory
+ */
+
 void terminal_check(char *user, char *pwd)
 {
 	if (isatty(STDIN_FILENO))
@@ -8,6 +14,12 @@ void terminal_check(char *user, char *pwd)
 		fflush(stdout);
 	}
 }
+
+/**
+ * main - main fucntion of the shell
+ *
+ * Return: 0 on success
+ */
 
 int main(void)
 {
