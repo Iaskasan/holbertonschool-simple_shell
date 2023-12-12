@@ -1,5 +1,10 @@
 #include "main.h"
 
+/**
+ * print_ascii_art - prints ascii art from a file
+ * @filename: the file to read from
+ */
+
 void print_ascii_art(const char *filename)
 {
 	FILE *file = fopen(filename, "r");
