@@ -24,8 +24,6 @@ int main(void)
 			break;
 		else if (strcmp(input, "clear\n") == 0)
 			system("clear");
-		else if (strcmp(input, "help\n") == 0)
-			printf("help\n");
 		else
 			printf("%s", input);
 		terminal_check(user, pwd);
