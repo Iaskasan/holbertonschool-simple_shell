@@ -30,12 +30,20 @@ int main(void)
 	size_t len = 0;
 	ssize_t read;
 
-	terminal_check(user, pwd);
-	while ((read = getline(&user_input, &len, stdin)) != -1)
+	
+	while (1)
 	{
+		terminal_check(user, pwd);
+
+		read = getline(&user_input, &len, stdin);
+		if (read == -1)
+			break;
+
 		user_input[strcspn(user_input, "\n")] = 0;
 
-		if (strcmp(user_input, "exit") == 0)
+		if (strlen(user_input) == 0)
+			continue;
+		else if (strcmp(user_input, "exit") == 0)
 			break;
 		else if (strcmp(user_input, "clear") == 0)
 			system("clear");
@@ -48,7 +56,6 @@ int main(void)
 		{
 			execute_command(user_input);
 		}
-		terminal_check(user, pwd);
 	}
 	free(user_input);
 	return (0);
