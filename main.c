@@ -61,6 +61,7 @@ int main(void)
 		}
 		terminal_check(user, pwd);
 	}
+	putchar('\n');
 	free(user_input);
 	return (0);
 }
