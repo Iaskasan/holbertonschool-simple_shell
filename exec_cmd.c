@@ -5,32 +5,34 @@
  * @command: the command to execute
  */
 
-void execute_command(const char *command)
+void execute_command(char *command)
 {
-	char *executable_path = find_executable(command);
-	char *argv[2];
+    char *argv[10];
+    int argc = 0;
+    char *token = strtok(command, " ");
 	pid_t pid = fork();
 
-	if (pid == -1)
-	{
-		perror("fork error");
-		free(executable_path);
-		exit(EXIT_FAILURE);
-	}
-	else if (pid == 0)
-	{
-		extern char **environ;
-		argv[0] = executable_path;
-		argv[1] = NULL;
-		execve(executable_path, argv, environ);
-		perror("execcve error");
-		free(executable_path);
-		exit(EXIT_FAILURE);
-	}
-	else
-	{
-		int status;
-		waitpid(pid, &status, 0);
-		free(executable_path);
-	}
+    while (token != NULL && argc < 9)
+    {
+        argv[argc++] = token;
+        token = strtok(NULL, " ");
+    }
+    argv[argc] = NULL;
+
+    if (pid == -1)
+    {
+        perror("fork error");
+        exit(EXIT_FAILURE);
+    }
+    else if (pid == 0)
+    {
+        execvp(argv[0], argv);
+        perror("execvp error");
+        exit(EXIT_FAILURE);
+    }
+    else
+    {
+        int status;
+        waitpid(pid, &status, 0);
+    }
 }

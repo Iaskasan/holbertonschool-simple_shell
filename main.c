@@ -29,7 +29,6 @@ int main(void)
 	char *user_input = NULL;
 	size_t len = 0;
 	ssize_t read;
-	char *executable_path;
 
 	terminal_check(user, pwd);
 	while ((read = getline(&user_input, &len, stdin)) != -1)
@@ -47,21 +46,10 @@ int main(void)
 		}
 		else
 		{
-			executable_path = find_executable(user_input);
-			if (executable_path)
-		{
-				execute_command(user_input);
-				free(executable_path);
-		}
-			else
-			{
-				if (strlen(user_input) != 0)
-				printf("%s: command not found\n", user_input);
-			}
+			execute_command(user_input);
 		}
 		terminal_check(user, pwd);
 	}
-	putchar('\n');
 	free(user_input);
 	return (0);
 }

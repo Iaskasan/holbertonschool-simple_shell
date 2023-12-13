@@ -13,7 +13,7 @@ void terminal_check(char *user, char *pwd);
 
 void print_ascii_art(const char *filename);
 
-void execute_command(const char *command);
+void execute_command(char *command);
 char *find_executable(const char *command);
 
 #endif
