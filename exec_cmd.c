@@ -11,15 +11,9 @@ void execute_command(const char *command)
 	char *argv[2];
 	pid_t pid = fork();
 
-	if (!executable_path)
-	{
-		fprintf(stderr, "Command '%s' not found.\n", command);
-		return;
-	}
-
 	if (pid == -1)
 	{
-		perror("Erreur fork");
+		perror("fork error");
 		free(executable_path);
 		exit(EXIT_FAILURE);
 	}
@@ -29,7 +23,7 @@ void execute_command(const char *command)
 		argv[0] = executable_path;
 		argv[1] = NULL;
 		execve(executable_path, argv, environ);
-		perror("Erreur execve");
+		perror("execcve error");
 		free(executable_path);
 		exit(EXIT_FAILURE);
 	}
@@ -38,9 +32,5 @@ void execute_command(const char *command)
 		int status;
 		waitpid(pid, &status, 0);
 		free(executable_path);
-		if (WIFEXITED(status))
-		{
-			printf("Le processus enfant s'est terminé avec le statut: %d\n", WEXITSTATUS(status));
-		}
 	}
 }

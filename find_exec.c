@@ -13,7 +13,8 @@ char *find_executable(const char *command)
 		return NULL;
 	}
 
-	for (token = strtok(path_copy, ":"); token != NULL; token = strtok(NULL, ":")) {
+	for (token = strtok(path_copy, ":"); token != NULL; token = strtok(NULL, ":"))
+	{
 		sprintf(exec_path, "%s/%s", token, command);
 		if (access(exec_path, X_OK) == 0)
 		{
