@@ -28,16 +28,19 @@ int main(void)
 	char *pwd = getenv("PWD");
 	char *user_input = NULL;
 	size_t len = 0;
-	ssize_t read;
+	ssize_t bytes_read;
 
 	
 	while (1)
 	{
 		terminal_check(user, pwd);
 
-		read = getline(&user_input, &len, stdin);
-		if (read == -1)
+		bytes_read = getline(&user_input, &len, stdin);
+		if (bytes_read == -1)
+		{
+			putchar('\n');
 			break;
+		}
 
 		user_input[strcspn(user_input, "\n")] = 0;
 
@@ -48,10 +51,7 @@ int main(void)
 		else if (strcmp(user_input, "clear") == 0)
 			system("clear");
 		else if (strcmp(user_input, "sohi") == 0)
-		{
 			print_ascii_art(ascii_filename);
-			printf("\n");
-		}
 		else
 		{
 			execute_command(user_input);

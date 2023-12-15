@@ -45,7 +45,7 @@ void execute_command(char *command)
 	{
 		if (execve(executable_path, argv, envp) == -1)
 		{
-			perror("execve error");
+			perror("./simple_shell");
 			exit(EXIT_FAILURE);
 		}
 	}
