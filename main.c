@@ -24,13 +24,14 @@ void terminal_check(char *user, char *pwd)
 int main(void)
 {
 	const char *ascii_filename = "ascii-art.txt";
+	char *user_input = NULL;
 	char *user = getenv("USER");
 	char *pwd = getenv("PWD");
-	char *user_input = NULL;
 	size_t len = 0;
 	ssize_t bytes_read;
 
-	
+	signal(SIGINT, handle_sigint);
+
 	while (1)
 	{
 		terminal_check(user, pwd);
