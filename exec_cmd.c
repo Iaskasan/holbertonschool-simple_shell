@@ -5,14 +5,18 @@
  * @command: the command to execute
  */
 
+pid_t child_pid;
+
 void execute_command(char *command)
 {
 	char *argv[10];
 	int argc = 0;
 	char *token = strtok(command, " ");
-	pid_t pid;
 	char *envp[] = { NULL };
 	char *executable_path;
+	int status;
+
+	child_pid = 0;
 
 	while (token != NULL && argc < 9)
 	{
@@ -35,13 +39,13 @@ void execute_command(char *command)
 		}
 	}
 
-	pid = fork();
-	if (pid == -1)
+	child_pid = fork();
+	if (child_pid == -1)
 	{
 		perror("fork error");
 		exit(EXIT_FAILURE);
 	}
-	else if (pid == 0)
+	else if (child_pid == 0)
 	{
 		if (execve(executable_path, argv, envp) == -1)
 		{
@@ -51,8 +55,7 @@ void execute_command(char *command)
 	}
 	else
 	{
-		int status;
-		waitpid(pid, &status, 0);
+		waitpid(child_pid, &status, 0);
 		if (executable_path != argv[0]) free(executable_path);
 	}
 }
