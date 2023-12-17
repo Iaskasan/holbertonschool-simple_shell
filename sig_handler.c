@@ -8,6 +8,7 @@
 void handle_sigint(int sig)
 {
 	(void)sig;
+
 	if (child_pid != 0)
 	{
 		kill(child_pid, SIGINT);
