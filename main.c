@@ -49,8 +49,6 @@ int main(void)
 			continue;
 		else if (strcmp(user_input, "exit") == 0)
 			break;
-		else if (strcmp(user_input, "clear") == 0)
-			system("clear");
 		else if (strcmp(user_input, "sohi") == 0)
 			print_ascii_art(ascii_filename);
 		else if (strcmp(user_input, "calc") == 0)
@@ -66,5 +64,5 @@ int main(void)
 		}
 	}
 	free(user_input);
-	return (0);
+	exit(EXIT_SUCCESS);
 }

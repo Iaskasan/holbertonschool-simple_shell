@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * handle_sigint - handles SIGINT (CTRL-D)
+ * handle_sigint - handles SIGINT (CTRL-C)
  * @sig: the signal number
  */
 
