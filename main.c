@@ -18,7 +18,7 @@ void terminal_check(char *user, char *pwd)
 /**
  * main - main fucntion of the shell
  *
- * Return: 0 on success
+ * Return: EXIT_SUCCESS
  */
 
 int main(void)
@@ -40,7 +40,7 @@ int main(void)
 		if (bytes_read == -1)
 		{
 			putchar('\n');
-			exit(EXIT_SUCCESS);
+			break;
 		}
 
 		user_input[strcspn(user_input, "\n")] = 0;
@@ -53,6 +53,13 @@ int main(void)
 			system("clear");
 		else if (strcmp(user_input, "sohi") == 0)
 			print_ascii_art(ascii_filename);
+		else if (strcmp(user_input, "calc") == 0)
+		{
+			printf("\033[35mCalc mode\033[0m\n");
+			printf("\033[35mUse format \"num operator num\" and press enter\033[0m\n");
+			printf("\033[31mUse \"exit\" command to exit calc mode\033[0m\n");
+			run_calculator();
+		}
 		else
 			execute_command(user_input);
 	}

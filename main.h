@@ -20,5 +20,16 @@ void execute_command(char *command);
 char *find_executable(const char *command);
 
 void handle_sigint(int sig);
+void run_calculator(void);
+int calculate(int num1, char *operator, int num2);
+
+/**
+ * Structure for the operator from the calc function
+*/
+typedef struct op
+{
+    char *op;
+    int (*f)(int a, int b);
+} op_t;
 
 #endif
