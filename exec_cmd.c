@@ -9,7 +9,7 @@ pid_t child_pid;
 
 void execute_command(char *command)
 {
-	char *argv[10];
+	char *argv[32];
 	int argc = 0;
 	char *token = strtok(command, " ");
 	char *envp[] = { NULL };
@@ -18,7 +18,7 @@ void execute_command(char *command)
 
 	child_pid = 0;
 
-	while (token != NULL && argc < 9)
+	while (token != NULL && argc < 31)
 	{
 		argv[argc++] = token;
 		token = strtok(NULL, " ");
@@ -29,14 +29,13 @@ void execute_command(char *command)
 	{
 		executable_path = argv[0];
 	}
-	else
+	
+	executable_path = find_executable(argv[0]);
+
+	if (executable_path == NULL)
 	{
-		executable_path = find_executable(argv[0]);
-		if (executable_path == NULL)
-		{
-			printf("%s: command not found\n", argv[0]);
-			return;
-		}
+		printf("%s: command not found\n", argv[0]);
+		return;
 	}
 
 	child_pid = fork();

@@ -9,7 +9,7 @@ char *find_executable(const char *command)
 
 	if (!path_copy)
 	{
-		perror("strdup");
+		perror("$PATH not found");
 		return NULL;
 	}
 
