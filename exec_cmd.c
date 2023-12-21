@@ -26,9 +26,7 @@ void execute_command(char *command)
     argv[argc] = NULL;
 
 	if (argv[0][0] == '/' || (argv[0][0] == '.' && argv[0][1] == '/'))
-	{
 		executable_path = argv[0];
-	}
 	
 	executable_path = find_executable(argv[0]);
 
