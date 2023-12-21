@@ -7,7 +7,7 @@
  * Return: A dynamically allocated string containing the full path to the executable,
  *         or NULL if the executable is not found or if an error occurs.
  */
- 
+
 char *find_executable(const char *command)
 {
 	char *path = getenv("PATH");
@@ -20,6 +20,8 @@ char *find_executable(const char *command)
 		perror("$PATH not found");
 		return (NULL);
 	}
+	if (access(command, X_OK) == 0)
+        return (strdup(command));
 
 	for (token = strtok(path_copy, ":"); token != NULL; token = strtok(NULL, ":"))
 	{

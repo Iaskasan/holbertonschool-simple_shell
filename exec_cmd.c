@@ -53,6 +53,7 @@ void execute_command(char *command)
 	if (executable_path == NULL)
 	{
 		printf("%s: command not found\n", argv[0]);
+		free(argv);
 		return;
 	}
 	child_pid = fork();
@@ -74,5 +75,6 @@ void execute_command(char *command)
 		waitpid(child_pid, &status, 0);
 		if (executable_path != argv[0])
 			free(executable_path);
+		free(argv);
 	}
 }
