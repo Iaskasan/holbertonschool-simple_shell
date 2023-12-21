@@ -1,33 +1,53 @@
 #include "main.h"
 
-/**
- * execute_command - executes a command
- * @command: the command to execute
- */
-
 pid_t child_pid;
 
-void execute_command(char *command)
+/**
+ * parse_command - Parse a command string into an array of arguments.
+ * @command: The command string to be parsed.
+ *
+ * Return: An array of pointers to strings (arguments), or NULL on failure.
+ */
+
+char **parse_command(char *command)
 {
-	char *argv[32];
 	int argc = 0;
 	char *token = strtok(command, " ");
-	char *envp[] = { NULL };
-	char *executable_path;
-	int status;
+	char **argv = malloc(32 * sizeof(char *));
 
-	child_pid = 0;
+	if (argv == NULL)
+	{
+		perror("malloc error");
+		exit(EXIT_FAILURE);
+	}
 
 	while (token != NULL && argc < 31)
 	{
 		argv[argc++] = token;
 		token = strtok(NULL, " ");
 	}
-    argv[argc] = NULL;
+	argv[argc] = NULL;
 
-	if (argv[0][0] == '/' || (argv[0][0] == '.' && argv[0][1] == '/'))
-		executable_path = argv[0];
-	
+	return (argv);
+}
+
+/**
+ * execute_command - executes a command
+ * @command: the command to execute
+ */
+
+void execute_command(char *command)
+{
+	char **argv;
+	char *envp[] = { NULL };
+	char *executable_path;
+	int status;
+
+	child_pid = 0;
+	argv = parse_command(command);
+		if (argv == NULL)
+		return;
+
 	executable_path = find_executable(argv[0]);
 
 	if (executable_path == NULL)
@@ -35,7 +55,6 @@ void execute_command(char *command)
 		printf("%s: command not found\n", argv[0]);
 		return;
 	}
-
 	child_pid = fork();
 	if (child_pid == -1)
 	{
@@ -53,6 +72,7 @@ void execute_command(char *command)
 	else
 	{
 		waitpid(child_pid, &status, 0);
-		if (executable_path != argv[0]) free(executable_path);
+		if (executable_path != argv[0])
+			free(executable_path);
 	}
 }
