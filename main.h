@@ -8,6 +8,7 @@
 #include <signal.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <limits.h>
 
 	extern pid_t child_pid;
 

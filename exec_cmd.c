@@ -52,7 +52,10 @@ void execute_command(char *command)
 
 	if (executable_path == NULL)
 	{
-		printf("%s: command not found\n", argv[0]);
+		if (isatty(STDIN_FILENO))
+			fprintf(stderr, "%s: Command not found\n", argv[0]);
+		else
+			fprintf(stderr,"%d, %s: not found", 1, argv[0]);
 		free(argv);
 		return;
 	}

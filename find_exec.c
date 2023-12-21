@@ -1,12 +1,14 @@
 #include "main.h"
 
 /**
- * find_executable - Search for an executable file in the directories listed in PATH.
+ * find_executable - Search for an executable file in the directories
+ * listed in PATH.
  * @command: The command for which to find the executable.
  *
- * Return: A dynamically allocated string containing the full path to the executable,
- *         or NULL if the executable is not found or if an error occurs.
+ * Return: A dynamically allocated string containing the full path to the
+ * executable, or NULL if the executable is not found or if an error occurs.
  */
+
 
 char *find_executable(const char *command)
 {
@@ -21,7 +23,7 @@ char *find_executable(const char *command)
 		return (NULL);
 	}
 	if (access(command, X_OK) == 0)
-        return (strdup(command));
+		return (strdup(command));
 
 	for (token = strtok(path_copy, ":"); token != NULL; token = strtok(NULL, ":"))
 	{
