@@ -18,6 +18,7 @@ void print_ascii_art(const char *filename);
 
 void execute_command(char *command);
 char *find_executable(const char *command);
+char **parse_command(char *command)
 
 void handle_sigint(int sig);
 void run_calculator(void);
