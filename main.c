@@ -31,19 +31,20 @@ int main(void)
 	ssize_t bytes_read;
 
 	signal(SIGINT, handle_sigint);
-
 	while (1)
 	{
 		terminal_check(user, pwd);
-
 		bytes_read = getline(&user_input, &len, stdin);
 		if (bytes_read == -1)
 		{
+			if (isatty(STDIN_FILENO))
+			{
+				putchar('\n');
+				break;
+			}
 			break;
 		}
-
 		user_input[strcspn(user_input, "\n")] = 0;
-
 		if (strlen(user_input) == 0)
 			continue;
 		else if (strcmp(user_input, "exit") == 0)
