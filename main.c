@@ -39,7 +39,6 @@ int main(void)
 		bytes_read = getline(&user_input, &len, stdin);
 		if (bytes_read == -1)
 		{
-			putchar('\n');
 			break;
 		}
 
