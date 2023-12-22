@@ -53,6 +53,8 @@ int main(void)
 			system("clear");
 		else if (strcmp(user_input, "sohi") == 0)
 			print_ascii_art(ascii_filename);
+		else if (strcmp(user_input, "env") == 0)
+			print_env();
 		else if (strcmp(user_input, "calc") == 0)
 		{
 			printf("\033[35mCalc mode\033[0m\n");

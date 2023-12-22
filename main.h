@@ -10,12 +10,15 @@
 #include <sys/wait.h>
 #include <limits.h>
 
-	extern pid_t child_pid;
+extern pid_t child_pid;
+extern char **environ;
 
 int main(void);
 void terminal_check(char *user, char *pwd);
 
 void print_ascii_art(const char *filename);
+char *shell_executable_name(void);
+void print_env(void);
 
 void execute_command(char *command);
 char *find_executable(const char *command);
