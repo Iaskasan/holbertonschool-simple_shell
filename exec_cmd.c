@@ -39,7 +39,6 @@ char **parse_command(char *command)
 void execute_command(char *command)
 {
 	char **argv;
-	char *envp[] = { NULL };
 	char *executable_path;
 	int status;
 
@@ -49,13 +48,12 @@ void execute_command(char *command)
 		return;
 
 	executable_path = find_executable(argv[0]);
-
 	if (executable_path == NULL)
 	{
 		if (isatty(STDIN_FILENO))
 			fprintf(stderr, "%s: Command not found\n", argv[0]);
 		else
-			fprintf(stderr,"%d, %s: not found", 1, argv[0]);
+			fprintf(stderr, "%s: not found", argv[0]);
 		free(argv);
 		return;
 	}
@@ -67,7 +65,7 @@ void execute_command(char *command)
 	}
 	else if (child_pid == 0)
 	{
-		if (execve(executable_path, argv, envp) == -1)
+		if (execve(executable_path, argv, environ) == -1)
 		{
 			perror("./simple_shell");
 			exit(EXIT_FAILURE);
