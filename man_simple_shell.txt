@@ -1,0 +1,33 @@
+.TH SIMPLE_SHELL 1 "2023" "simple_shell version 1.0" "User Manuals"
+.SH NAME
+simple_shell \- A simple shell replicating basic bash functionality.
+.SH SYNOPSIS
+.B simple_shell
+.RI [ options ]
+.SH DESCRIPTION
+A simple shell that tries to replicate the bash in a basic way. It supports basic commands, arguments, and a few custom commands. It is designed for basic shell operations and learning purposes.
+.SH COMMANDS
+.TP
+.B sohi
+Prints an ASCII art picture of Soh'i, a character from a story.
+.TP
+.B calc
+Switches the shell into a calculator mode, which supports basic arithmetic operations in "int operator int" format.
+.TP
+.B exit
+Exits the simple_shell or calculator mode, depending on the current context.
+.TP
+.B clear
+Clears the command prompt, providing a clean workspace.
+.TP
+.B env
+Prints out all the environment variables set in the shell.
+.SH SIGNAL HANDLING
+.B CTRL-D
+Interrupts the program, effectively exiting the shell.
+.B CTRL-C
+Interrupts child processes created within the shell without exiting the shell itself.
+.SH AUTHOR
+Iaskasan (nokiesan@yahoo.fr)
+.SH "SEE ALSO"
+.B bash(1), sh(1)
