@@ -17,14 +17,23 @@ char *find_executable(const char *command)
 	char *token;
 	char exec_path[1024];
 
+	if (command == NULL || *command == '\0' || strspn(command, " ") == strlen(command))
+	{
+		free(path_copy);
+		return (NULL);
+	}
 	if (!path_copy)
 	{
 		perror("$PATH not found");
+		free(path_copy);
 		return (NULL);
 	}
-	if (access(command, X_OK) == 0)
-		return (strdup(command));
 
+	if (access(command, X_OK) == 0)
+	{
+		free(path_copy);
+		return (strdup(command));
+	}
 	for (token = strtok(path_copy, ":"); token != NULL; token = strtok(NULL, ":"))
 	{
 		sprintf(exec_path, "%s/%s", token, command);

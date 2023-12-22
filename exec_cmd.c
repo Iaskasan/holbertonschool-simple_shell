@@ -51,6 +51,7 @@ void execute_command(char *command)
 	if (executable_path == NULL)
 	{
 		free(argv);
+		free(executable_path);
 		return;
 	}
 	child_pid = fork();
