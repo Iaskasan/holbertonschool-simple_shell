@@ -56,12 +56,7 @@ int main(void)
 		else if (strcmp(user_input, "env") == 0)
 			print_env();
 		else if (strcmp(user_input, "calc") == 0)
-		{
-			printf("\033[35mCalc mode\033[0m\n");
-			printf("\033[35mUse format \"num operator num\" and press enter\033[0m\n");
-			printf("\033[31mUse \"exit\" command to exit calc mode\033[0m\n");
 			run_calculator();
-		}
 		else
 			execute_command(user_input);
 	}
