@@ -12,7 +12,7 @@ void print_ascii_art(const char *filename)
 
 	if (file == NULL)
 	{
-		perror("Erreur lors de l'ouverture du fichier");
+		perror("File open error");
 		return;
 	}
 

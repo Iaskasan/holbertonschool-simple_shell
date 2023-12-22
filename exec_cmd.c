@@ -50,10 +50,6 @@ void execute_command(char *command)
 	executable_path = find_executable(argv[0]);
 	if (executable_path == NULL)
 	{
-		if (isatty(STDIN_FILENO))
-			fprintf(stderr, "%s: Command not found\n", argv[0]);
-		else
-			fprintf(stderr, "%s: not found", argv[0]);
 		free(argv);
 		return;
 	}
