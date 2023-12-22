@@ -3,3 +3,5 @@ main.h.gch
 simple_shell
 tests.c
 pid
+path.c
+path
